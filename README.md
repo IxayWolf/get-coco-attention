@@ -123,3 +123,18 @@ uv run coco-attention alert --config /path/to/config.json
 ## Notes
 - Hue light IDs can be seen in the Hue API (GET `/api/<username>/lights`).
 - This tool is intentionally simple and uses the Hue local API.
+
+## Changelog
+See `CHANGELOG.md`.
+
+## Testing
+```bash
+uv sync --dev
+uv run ruff check .
+uv run pytest
+```
+
+## CI
+- Tests run on pushes and pull requests.
+- Lint runs on pushes and pull requests.
+- Release builds run on tags (`v*`) and published GitHub releases.
