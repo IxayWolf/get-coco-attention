@@ -242,7 +242,9 @@ def cmd_set(args: argparse.Namespace) -> None:
     print(f"Light {light_id} updated.")
 
 
-def _pulse_alert(client: HueClient, light_ids: list[str], period: float, low_bri: int) -> None:
+def _pulse_alert(
+    client: HueClient, light_ids: list[str], period: float, low_bri: int
+) -> None:
     if period <= 0:
         raise SystemExit("--period must be greater than 0.")
     half_period = period / 8
@@ -259,6 +261,7 @@ def _pulse_alert(client: HueClient, light_ids: list[str], period: float, low_bri
     while True:
         for light_id in light_ids:
             pulse_once(light_id)
+
 
 def _check_tcp(ip: str, port: int = 80, timeout: float = 2.0) -> str:
     try:

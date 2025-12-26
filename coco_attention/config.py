@@ -20,6 +20,7 @@ class Config:
 class LastState:
     lights: dict[str, LightState]  # Mapping of light IDs to their last known state
 
+
 @dataclass
 class LightState:
     light_id: Optional[str] = None

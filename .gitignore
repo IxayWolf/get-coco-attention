@@ -1,2 +1,4 @@
 .venv
 coco_attention.egg-info
+.pytest_cache
+.ruff_cache

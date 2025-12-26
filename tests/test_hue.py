@@ -32,7 +32,9 @@ def test_list_lights(monkeypatch) -> None:
 def test_get_light_state(monkeypatch) -> None:
     def fake_get(url, timeout=5):
         assert url == "http://bridge/api/user/lights/9"
-        return DummyResponse({"state": {"on": True, "bri": 120, "hue": 500, "sat": 200}})
+        return DummyResponse(
+            {"state": {"on": True, "bri": 120, "hue": 500, "sat": 200}}
+        )
 
     monkeypatch.setattr("coco_attention.hue.requests.get", fake_get)
     client = HueClient("bridge", "user")
