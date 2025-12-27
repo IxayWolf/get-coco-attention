@@ -23,7 +23,10 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Install dependencies
-        run: uv sync --dev
+        run: uv sync
+
+      - name: Install test dependencies
+        run: uv pip install pytest
 
       - name: Run tests
         run: uv run python -m pytest -v
@@ -49,7 +52,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.11"
@@ -58,7 +61,7 @@ jobs:
           uv sync --dev
           uv run python -m build
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: dist
           path: dist/*
