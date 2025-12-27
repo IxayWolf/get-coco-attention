@@ -37,10 +37,10 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Run ruff check
-        run: uvx ruff check src/ tests/
+        run: uvx ruff check coco_attention/ tests/
 
       - name: Run ruff format check
-        run: uvx ruff format --check src/ tests/
+        run: uvx ruff format --check coco_attention/ tests/
 
   release:
     if: github.event_name == 'release' || startsWith(github.ref, 'refs/tags/v')
