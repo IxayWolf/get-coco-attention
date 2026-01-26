@@ -39,7 +39,7 @@ jobs:
       - name: Build distribution
         if: success()
         run: |
-          uv sync --dev
+          uv sync --extra dev
           uv run python -m build
 
       - name: Get latest tag
