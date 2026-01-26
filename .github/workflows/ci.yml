@@ -22,17 +22,11 @@ jobs:
 
       - name: Validate current commit (push to main)
         if: github.event_name == 'push'
-        run: |
-          echo "${{ github.event.head_commit.message }}" | commitlint \
-            --config <(echo "module.exports = {extends: ['@commitlint/config-conventional']}")
+        run: echo "${{ github.event.head_commit.message }}" | commitlint
 
       - name: Validate PR commits
         if: github.event_name == 'pull_request'
-        run: |
-          commitlint \
-            --from ${{ github.event.pull_request.base.sha }} \
-            --to ${{ github.event.pull_request.head.sha }} \
-            --config <(echo "module.exports = {extends: ['@commitlint/config-conventional']}")
+        run: commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }}
 
   test:
     runs-on: ubuntu-latest
