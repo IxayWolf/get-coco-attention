@@ -11,13 +11,14 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    environment: release
     concurrency: release
 
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_PAT }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,7 +30,7 @@ jobs:
 
       - name: Run semantic-release
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.RELEASE_PAT }}
         run: semantic-release version --changelog --push --tag --vcs-release
 
       - name: Install uv
